@@ -1,0 +1,14 @@
+{
+	"phone_name":"y7 2017",
+	"description":{
+		"model":"huwawei",
+		"ram":1,
+		"rom":8,
+		"selfie_camera":5,
+		"rear_camera":8
+		
+	},
+	"year":2019,
+	"is_Available":true,
+	"shops":[{"shop_name":"greenware","address":"liberty","price":12000}]
+}

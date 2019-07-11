@@ -4,60 +4,58 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const PORT = 4000;
-const todoRoutes = express.Router();
+const phoneRoutes = express.Router();
 
-let Todo = require('./models/todo.model');
+let Phone = require('./models/phone.model');
 
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://127.0.0.1:27017/todos', { useNewUrlParser: true });
+mongoose.connect('mongodb://127.0.0.1:27017/phones', { useNewUrlParser: true });
 const connection = mongoose.connection;
 
 connection.once('open', function() {
     console.log("MongoDB database connection established successfully");
 })
 
-todoRoutes.route('/').get(function(req, res) {
-    Todo.find(function(err, todos) {
+phoneRoutes.route('/').get(function(req, res) {
+    Phone.find(function(err, phones) {
         if (err) {
             console.log(err);
         } else {
-            res.json(todos);
+            res.json(phones);
         }
     });
 });
 
-todoRoutes.route('/:id').get(function(req, res) {
+phoneRoutes.route('/:id').get(function(req, res) {
     let id = req.params.id;
-    Todo.findById(id, function(err, todo) {
-        res.json(todo);
+    Phone.findById(id, function(err, phone) {
+        res.json(phone);
     });
 });
 
-todoRoutes.route('/add').post(function(req, res) {
-    let todo = new Todo(req.body);
-    todo.save()
-        .then(todo => {
-            res.status(200).json({'todo': 'todo added successfully'});
+phoneRoutes.route('/add').post(function(req, res) {
+    let phone = new Phone(req.body);
+    phone.save()
+        .then(phone => {
+            res.status(200).json({'phone': 'phone added successfully'});
         })
         .catch(err => {
-            res.status(400).send('adding new todo failed');
+            res.status(400).send('adding new phone failed');
         });
 });
 
-todoRoutes.route('/update/:id').post(function(req, res) {
-    Todo.findById(req.params.id, function(err, todo) {
-        if (!todo)
+phoneRoutes.route('/update/:id').post(function(req, res) {
+    Phone.findById(req.params.id, function(err, phone) {
+        if (!phone)
             res.status(404).send("data is not found");
         else
-            todo.todo_description = req.body.todo_description;
-            todo.todo_responsible = req.body.todo_responsible;
-            todo.todo_priority = req.body.todo_priority;
-            todo.todo_completed = req.body.todo_completed;
+            phone.phone_description = req.body.phone_description;
+      
 
-            todo.save().then(todo => {
-                res.json('Todo updated!');
+            phone.save().then(phone => {
+                res.json('Phone updated!');
             })
             .catch(err => {
                 res.status(400).send("Update not possible");
@@ -65,18 +63,18 @@ todoRoutes.route('/update/:id').post(function(req, res) {
     });
 });
 
-todoRoutes.route('/add').post(function(req, res) {
-    let todo = new Todo(req.body);
-    todo.save()
-        .then(todo => {
-            res.status(200).json({'todo': 'todo added successfully'});
+phoneRoutes.route('/add').post(function(req, res) {
+    let phone = new Phone(req.body);
+    phone.save()
+        .then(phone => {
+            res.status(200).json({'phone': 'phone added successfully'});
         })
         .catch(err => {
             res.status(400).send('adding new todo failed');
         });
 });
 
-app.use('/todos', todoRoutes);
+app.use('/phones', phoneRoutes);
 
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
