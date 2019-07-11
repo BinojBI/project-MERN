@@ -28,4 +28,4 @@ let Phone = new Schema({
     
 });
 
-module.exports = mongoose.model('Todo', Phone);
+module.exports = mongoose.model('Phone', Phone);
