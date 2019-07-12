@@ -5,73 +5,74 @@ export default class CreateTodo extends Component {
     constructor(props) {
         super(props);
 
-        this.onChangeTodoDescription = this.onChangeTodoDescription.bind(this);
-        this.onChangeTodoResponsible = this.onChangeTodoResponsible.bind(this);
-        this.onChangeTodoPriority = this.onChangeTodoPriority.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            todo_description: '',
-            todo_responsible: '',
-            todo_priority: '',
-            todo_completed: false
+            phone_name: '',
+            model: '',
+            ram: '',
+            rom: 0,
+            selfie_camera:0,
+            rear_camera:0,
+            year:2019,
+            is_Available:false,
+            shops:[]
         }
     }
 
-    onChangeTodoDescription(e) {
-        this.setState({
-            todo_description: e.target.value
-        });
-    }
+    handleInputChange(e) {
+        const target = e.target;
+        const name = target.name;
+        const value = target.value;
 
-    onChangeTodoResponsible(e) {
         this.setState({
-            todo_responsible: e.target.value
-        });
-    }
-
-    onChangeTodoPriority(e) {
-        this.setState({
-            todo_priority: e.target.value
+            [name]: value
         });
     }
 
     onSubmit(e) {
         e.preventDefault();
-        
-        console.log(`Form submitted:`);
-        console.log(`Todo Description: ${this.state.todo_description}`);
-        console.log(`Todo Responsible: ${this.state.todo_responsible}`);
-        console.log(`Todo Priority: ${this.state.todo_priority}`);
      
-        const newTodo = {
-            todo_description: this.state.todo_description,
-            todo_responsible: this.state.todo_responsible,
-            todo_priority: this.state.todo_priority,
-            todo_completed: this.state.todo_completed
+        const newPhone = {
+            phone_name: this.state.phone_name,
+            model: this.state.model,
+            ram: this.state.ram,
+            rom: this.state.rom,
+            selfie_camera: this.state.selfie_camera,
+            rear_camera: this.state.rear_camera,
+            year: this.state.year,
+            is_Available: this.state.is_Available,
+            shops: this.state.shops
+            
         };
 
-        axios.post('http://localhost:4000/todos/add', newTodo)
+        axios.post('http://localhost:4000/phones/add', newPhone)
             .then(res => console.log(res.data));
 
         this.setState({
-            todo_description: '',
-            todo_responsible: '',
-            todo_priority: '',
-            todo_completed: false
+            phone_name: '',
+            model: '',
+            ram: '',
+            rom: 0,
+            selfie_camera:0,
+            rear_camera:0,
+            year:2019,
+            is_Available:false,
+            shops:[]
         })
     }
       render() {
         return (
             <div style={{marginTop: 10}}>
-                <h3>Create New Todo</h3>
+                <h3>Create New Phone</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group"> 
-                        <label>Description: </label>
+                        <label>Name : </label>
                         <input  type="text"
                                 className="form-control"
-                                value={this.state.todo_description}
-                                onChange={this.onChangeTodoDescription}
+                                value={this.state.phone_name}
+                                onChange={this.onChangenameDescription}
                                 />
                     </div>
                     <div className="form-group">
