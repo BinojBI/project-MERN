@@ -70,19 +70,19 @@ export default class CreateTodo extends Component {
                     <div className="form-group"> 
                         <label>Name : </label>
                         <input  type="text"
+                                name="phone_name"
                                 className="form-control"
                                 value={this.state.phone_name}
                                 onChange={this.onChangenameDescription}
                                 />
                     </div>
                     <div className="form-group">
-                        <label>Responsible: </label>
-                        <input 
-                                type="text" 
-                                className="form-control"
-                                value={this.state.todo_responsible}
-                                onChange={this.onChangeTodoResponsible}
-                                />
+                    <label>Model : </label>
+                        <select class="custom-select">                            
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
                     </div>
                     <div className="form-group">
                         <div className="form-check form-check-inline">
