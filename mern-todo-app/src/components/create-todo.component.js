@@ -119,17 +119,35 @@ export default class CreateTodo extends Component {
                                 </div>
                             </div>
                             <div className="col-sm">
-                                <div className="form-row">
+                              
                                    <div className="form-group">
                                         <label>Selfie Camera</label>
                                         <input className="form-control" type="number" placeholder="Enter MP value"></input>
-                                    </div>
-                                  
+                                    </div>                                  
                                     <div className="form-group">
                                         <label>Rear Camera</label>                               
                                         <input className="form-control" type="number" placeholder="Enter MP value"></input>
                                     </div>
+                                    <div className="form-group">
+                                    <label for="exampleFormControlSelect1">Year</label>
+                                    <select className="form-control" id="exampleFormControlSelect1">
+                                        <option>2017</option>
+                                        <option>2018</option>
+                                        <option selected>2019</option>
+                                        </select>
                                 </div>
+
+                                <div class="form-group">
+                                    <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck" />
+                                    <label class="form-check-label" for="gridCheck">
+                                        Available Stockes
+                                    </label>
+                                    
+                                </div>
+                                </div>
+                                
+                               
                             </div>
                         </div>
                         <div className="row">
