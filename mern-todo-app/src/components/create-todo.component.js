@@ -7,14 +7,15 @@ export default class CreateTodo extends Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.toggleChangeIsAvailable = this.toggleChangeIsAvailable.bind(this);
 
         this.state = {
             phone_name: '',
-            model: '',
-            ram: '',
-            rom: 0,
-            selfie_camera:0,
-            rear_camera:0,
+            model: 'None',
+            ram: 1,
+            rom: 1,
+            selfie_camera:2,
+            rear_camera:2,
             year:2019,
             is_Available:false,
             shops:[]
@@ -29,6 +30,12 @@ export default class CreateTodo extends Component {
         this.setState({
             [name]: value
         });
+    }
+
+    toggleChangeIsAvailable(){
+        this.setState(prevState => ({
+            is_Available: !prevState.is_Available,
+          }));
     }
 
     onSubmit(e) {
@@ -76,12 +83,15 @@ export default class CreateTodo extends Component {
                                         name="phone_name"
                                         className="form-control"
                                         value={this.state.phone_name}
-                                        onChange={this.onChangenameDescription}
+                                        onChange={this.handleInputChange}
                                     />
                                 </div>
                                 <div className="form-group">
                                     <label>Model : </label>
-                                    <select className="custom-select">
+                                    <select className="custom-select"
+                                        value={this.state.model}
+                                        onChange={this.handleInputChange}
+                                    >
                                         <option value="Samsung">Samsung</option>
                                         <option value="Huawei">Huawei</option>
                                         <option value="Apple">Apple</option>
@@ -91,63 +101,87 @@ export default class CreateTodo extends Component {
                                         <option value="Vivo">Vivo</option>
                                         <option value="Asus">Asus</option>
                                         <option value="Lenovo">Lenovo</option>
+
                                     </select>
                                 </div>
                                 <div className="form-group">
-                                    <label for="exampleFormControlSelect1">Ram</label>
-                                    <select className="form-control" id="exampleFormControlSelect1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>6</option>
-                                        <option>8</option>
+                                    <label htmlFor="exampleFormControlSelect1">Ram</label>
+                                    <select className="form-control"
+                                        value={this.state.ram}
+                                        onChange={this.handleInputChange}
+                                    >
+                                        <option value="1" >1</option>
+                                        <option value="2" >2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="6">6</option>
+                                        <option value="8">8</option>
                                     </select>
                                 </div>
                                 <div className="form-group">
-                                    <label for="exampleFormControlSelect1">Rom</label>
-                                    <select className="form-control" id="exampleFormControlSelect1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>4</option>
-                                        <option>8</option>
-                                        <option>16</option>
-                                        <option>32</option>
-                                        <option>64</option>
-                                        <option>128</option>
+                                    <label htmlFor="exampleFormControlSelect1">Rom</label>
+                                    <select className="form-control"
+                                        value={this.state.rom}
+                                        onChange={this.handleInputChange}
+                                    >
+                                        <option value="1" >1</option>
+                                        <option value="2">2</option>
+                                        <option value="4">4</option>
+                                        <option value="8">8</option>
+                                        <option value="16">16</option>
+                                        <option value="32">32</option>
+                                        <option value="64">64</option>
+                                        <option value="128">128</option>
                                     </select>
                                 </div>
                             </div>
                             <div className="col-sm">
-                              
-                                   <div className="form-group">
-                                        <label>Selfie Camera</label>
-                                        <input className="form-control" type="number" placeholder="Enter MP value"></input>
-                                    </div>                                  
-                                    <div className="form-group">
-                                        <label>Rear Camera</label>                               
-                                        <input className="form-control" type="number" placeholder="Enter MP value"></input>
-                                    </div>
-                                    <div className="form-group">
-                                    <label for="exampleFormControlSelect1">Year</label>
-                                    <select className="form-control" id="exampleFormControlSelect1">
-                                        <option>2017</option>
-                                        <option>2018</option>
-                                        <option selected>2019</option>
-                                        </select>
+
+                                <div className="form-group">
+                                    <label>Selfie Camera</label>
+                                    <input
+                                        className="form-control"
+                                        type="number"
+                                        placeholder="Enter MP value"
+                                        value={this.state.selfie_camera}
+                                        onChange={this.handleInputChange}
+                                    ></input>
+                                </div>
+                                <div className="form-group">
+                                    <label>Rear Camera</label>
+                                    <input
+                                        className="form-control"
+                                        type="number"
+                                        placeholder="Enter MP value"
+                                        value={this.state.rear_camera}
+                                        onChange={this.handleInputChange}
+                                    >
+                                    </input>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="exampleFormControlSelect1">Year</label>
+                                    <select className="form-control"
+                                        value={this.state.year}
+                                        onChange={this.handleInputChange}
+                                    >
+                                        <option value="2017">2017</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2019" >2019</option>
+                                    </select>
                                 </div>
 
-                                <div class="form-group">
-                                    <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck" />
-                                    <label class="form-check-label" for="gridCheck">
-                                        Available Stockes
+                                <div className="form-group">
+                                    <div className="form-check">
+                                        <input className="form-check-input"
+                                            type="checkbox"
+                                            checked={this.state.is_Available}
+                                            onChange={this.toggleChangeIsAvailable}
+                                        />
+                                        <label className="form-check-label" htmlFor="gridCheck">
+                                            Available Stockes
                                     </label>
-                                    
+                                    </div>
                                 </div>
-                                </div>
-                                
-                               
                             </div>
                         </div>
                         <div className="row">
