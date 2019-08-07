@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import ShopWithPrice from './shop-with-price';
 
 export default class CreateTodo extends Component {
     constructor(props) {
@@ -7,11 +8,12 @@ export default class CreateTodo extends Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.createShops = this.createShops.bind(this);
         this.toggleChangeIsAvailable = this.toggleChangeIsAvailable.bind(this);
 
         this.state = {
             phone_name: '',
-            model: 'None',
+            model: '',
             ram: 1,
             rom: 1,
             selfie_camera:2,
@@ -22,13 +24,36 @@ export default class CreateTodo extends Component {
         }
     }
 
+    // componentDidUpdate(prevProps) {
+    //     if (this.props.options[0].price !== prevProps.options[0].price) {
+    //       this.setState({
+    //         options: this.props.options,
+    //       });
+    //     }
+    //   }
+
     handleInputChange(e) {
         const target = e.target;
         const name = target.name;
-        const value = target.value;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        
 
         this.setState({
             [name]: value
+        });
+    }
+
+    createShops(e){
+
+       let selectedShop = e.target.value;
+
+        this.setState({
+            shops: [
+                ...this.state.shops,
+                <ShopWithPrice 
+                selectedShop = {selectedShop}
+                />
+            ]
         });
     }
 
@@ -62,8 +87,8 @@ export default class CreateTodo extends Component {
             model: '',
             ram: '',
             rom: 0,
-            selfie_camera:0,
-            rear_camera:0,
+            selfie_camera:2,
+            rear_camera:2,
             year:2019,
             is_Available:false,
             shops:[]
@@ -89,8 +114,8 @@ export default class CreateTodo extends Component {
                                 <div className="form-group">
                                     <label>Model : </label>
                                     <select className="custom-select"
-                                        value={this.state.model}
-                                        onChange={this.handleInputChange}
+                                        name={this.state.model}
+                                        onChange={this.handleInputChange}                                        
                                     >
                                         <option value="Samsung">Samsung</option>
                                         <option value="Huawei">Huawei</option>
@@ -107,7 +132,7 @@ export default class CreateTodo extends Component {
                                 <div className="form-group">
                                     <label htmlFor="exampleFormControlSelect1">Ram</label>
                                     <select className="form-control"
-                                        value={this.state.ram}
+                                        name={this.state.ram}
                                         onChange={this.handleInputChange}
                                     >
                                         <option value="1" >1</option>
@@ -121,7 +146,7 @@ export default class CreateTodo extends Component {
                                 <div className="form-group">
                                     <label htmlFor="exampleFormControlSelect1">Rom</label>
                                     <select className="form-control"
-                                        value={this.state.rom}
+                                        name={this.state.rom}
                                         onChange={this.handleInputChange}
                                     >
                                         <option value="1" >1</option>
@@ -143,7 +168,7 @@ export default class CreateTodo extends Component {
                                         className="form-control"
                                         type="number"
                                         placeholder="Enter MP value"
-                                        value={this.state.selfie_camera}
+                                        name={this.state.selfie_camera}
                                         onChange={this.handleInputChange}
                                     ></input>
                                 </div>
@@ -153,7 +178,7 @@ export default class CreateTodo extends Component {
                                         className="form-control"
                                         type="number"
                                         placeholder="Enter MP value"
-                                        value={this.state.rear_camera}
+                                        name={this.state.rear_camera}
                                         onChange={this.handleInputChange}
                                     >
                                     </input>
@@ -161,7 +186,7 @@ export default class CreateTodo extends Component {
                                 <div className="form-group">
                                     <label htmlFor="exampleFormControlSelect1">Year</label>
                                     <select className="form-control"
-                                        value={this.state.year}
+                                        name={this.state.year}
                                         onChange={this.handleInputChange}
                                     >
                                         <option value="2017">2017</option>
@@ -184,6 +209,30 @@ export default class CreateTodo extends Component {
                                 </div>
                             </div>
                         </div>
+                        <div className="row">
+                        {/* <button type="button" class="btn btn-primary" 
+                        onClick={this.createShops}>
+                            Create shop
+                        </button> */}
+                            <form class="col-md-4">
+                                <select class="form-control select2"
+                                
+                                onChange={this.createShops}
+                                >
+                                    <option>Select</option>
+                                    <option>Car</option>
+                                    <option>Bike</option>
+                                    <option>Scooter</option>
+                                    <option>Cycle</option>
+                                    <option>Horse</option>
+                                </select>
+                            </form>
+                        </div>
+                        <div className="row">
+                        <div className="form-group">
+                    {this.state.shops.map(child => child)}
+                    </div>
+                    </div>  
                         <div className="row">
                             <div className="form-group">
                                 <input type="submit" value="Create Todo" className="btn btn-primary" />

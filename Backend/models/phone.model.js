@@ -5,13 +5,20 @@ let Phone = new Schema({
     phone_name: {
         type: String
     },
-    description: {
-        model: String,
-        ram: Number,
-        rom: Number,
-        selfie_camera:Number,
-        rear_camera:Number
-
+    model: {
+        type: String
+    },
+    ram: {
+        type: Number
+    },
+    rom: {
+        type: Number
+    },
+    selfie_camera: {
+        type: Number
+    },
+    rear_camera: {
+        type: Number
     },
     year: {
         type: Number

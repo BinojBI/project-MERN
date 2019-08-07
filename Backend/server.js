@@ -63,17 +63,6 @@ phoneRoutes.route('/update/:id').post(function(req, res) {
     });
 });
 
-phoneRoutes.route('/add').post(function(req, res) {
-    let phone = new Phone(req.body);
-    phone.save()
-        .then(phone => {
-            res.status(200).json({'phone': 'phone added successfully'});
-        })
-        .catch(err => {
-            res.status(400).send('adding new todo failed');
-        });
-});
-
 app.use('/phones', phoneRoutes);
 
 app.listen(PORT, function() {
