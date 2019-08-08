@@ -8,7 +8,6 @@ export default class CreateTodo extends Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-        this.createShops = this.createShops.bind(this);
         this.toggleChangeIsAvailable = this.toggleChangeIsAvailable.bind(this);
 
         this.state = {
@@ -24,14 +23,6 @@ export default class CreateTodo extends Component {
         }
     }
 
-    // componentDidUpdate(prevProps) {
-    //     if (this.props.options[0].price !== prevProps.options[0].price) {
-    //       this.setState({
-    //         options: this.props.options,
-    //       });
-    //     }
-    //   }
-
     handleInputChange(e) {
         const target = e.target;
         const name = target.name;
@@ -40,20 +31,6 @@ export default class CreateTodo extends Component {
 
         this.setState({
             [name]: value
-        });
-    }
-
-    createShops(e){
-
-       let selectedShop = e.target.value;
-
-        this.setState({
-            shops: [
-                ...this.state.shops,
-                <ShopWithPrice 
-                selectedShop = {selectedShop}
-                />
-            ]
         });
     }
 
@@ -209,30 +186,12 @@ export default class CreateTodo extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="row">
-                        {/* <button type="button" class="btn btn-primary" 
-                        onClick={this.createShops}>
-                            Create shop
-                        </button> */}
-                            <form class="col-md-4">
-                                <select class="form-control select2"
-                                
-                                onChange={this.createShops}
-                                >
-                                    <option>Select</option>
-                                    <option>Car</option>
-                                    <option>Bike</option>
-                                    <option>Scooter</option>
-                                    <option>Cycle</option>
-                                    <option>Horse</option>
-                                </select>
-                            </form>
-                        </div>
-                        <div className="row">
-                        <div className="form-group">
-                    {this.state.shops.map(child => child)}
-                    </div>
-                    </div>  
+                        
+                      
+                        <ShopWithPrice 
+                        shops = {this.state.shops}
+                        />  
+        
                         <div className="row">
                             <div className="form-group">
                                 <input type="submit" value="Create Todo" className="btn btn-primary" />
