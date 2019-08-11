@@ -1,13 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>hey its working</Text>
-    </View>
-  );
-}
+import { StyleSheet,Button, Text, TextInput, View } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,3 +9,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default function App() {
+
+  return (
+    <View style={styles.container}>
+      <Text>hey its working</Text>
+      <TextInput
+          style={{height: 40}}
+          placeholder="Type here to translate!"
+        />
+        <Button
+          onPress={() => {
+            alert('You tapped the button!');
+          }}
+          title="Press Me"
+        />
+    </View>
+  );
+}
+
