@@ -12,46 +12,43 @@ export default class ShopWithPrices extends Component {
          createShops(e){
 
           let selectedShop = e.target.value;
-         
    
            this.setState({
             avalilableShops: [
-                   ...this.state.avalilableShops, 
+                   ...this.state.avalilableShops, selectedShop
                ]
            });
        }
 
          render() {
 
-        const rows = this.state.avalilableShops.map((record) => {
-
+        const rows = this.state.avalilableShops.map((record,index) => {
+            
             return (
-              <div className="row">
-              <div className="form-group col-md-6">
-                <input
-                  type="email"
-                  class="form-control"
-                  id="inputEmail4"
-                  value={this.props.selectedShop}
-                />
-              </div>
-              <div className="form-group col-md-4">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="inputPassword4"
-                  placeholder="Enter Price"
-                />
-              </div>
-              <div className="col-md-2">
-              <button type="button" class="btn btn-primary">Delete</button>
-              </div>
-            </div>
+                  <tr key={index}>
+                    <td>{record}</td>
+                    <td>
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="Enter Price"
+                      />
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-primary">
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+
             );
         });
 
            return (
              <div>
+               <label>
+                 Add shops that phone already available...
+               </label>
              <div className="row">
                <form className="col-md-12">
                  <select
@@ -68,9 +65,19 @@ export default class ShopWithPrices extends Component {
                 
                </form>
                </div>
-               );
-               <br/>               
-            {rows}           
+               <br/>  
+               <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Shop name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Remove</th>
+                  </tr>
+                </thead>
+                <tbody>
+            {rows}   
+            </tbody>
+              </table>        
              </div>
             
            );

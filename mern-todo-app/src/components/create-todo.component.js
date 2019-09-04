@@ -81,7 +81,8 @@ export default class CreateTodo extends Component {
                             <div className="col-sm">
                                 <div className="form-group">
                                     <label>Name : </label>
-                                    <input type="text"
+                                    <input 
+                                        type="text"
                                         name="phone_name"
                                         className="form-control"
                                         value={this.state.phone_name}
@@ -147,7 +148,8 @@ export default class CreateTodo extends Component {
                                         placeholder="Enter MP value"
                                         name={this.state.selfie_camera}
                                         onChange={this.handleInputChange}
-                                    ></input>
+                                    >
+                                    </input>
                                 </div>
                                 <div className="form-group">
                                     <label>Rear Camera</label>
@@ -171,30 +173,14 @@ export default class CreateTodo extends Component {
                                         <option value="2019" >2019</option>
                                     </select>
                                 </div>
-
-                                <div className="form-group">
-                                    <div className="form-check">
-                                        <input className="form-check-input"
-                                            type="checkbox"
-                                            checked={this.state.is_Available}
-                                            onChange={this.toggleChangeIsAvailable}
-                                        />
-                                        <label className="form-check-label" htmlFor="gridCheck">
-                                            Available Stockes
-                                    </label>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                        
-                      
                         <ShopWithPrice 
                         shops = {this.state.shops}
-                        />  
-        
+                        />        
                         <div className="row">
                             <div className="form-group">
-                                <input type="submit" value="Create Todo" className="btn btn-primary" />
+                                <input type="submit" value="Submit phone" className="btn btn-primary" />
                             </div>
                         </div>
                     </div>
