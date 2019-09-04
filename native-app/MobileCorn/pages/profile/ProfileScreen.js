@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    
   }
 });
 
@@ -19,7 +18,7 @@ const { width: viewportWidth } = Dimensions.get('window');
 export default class Profile extends Component {
 
   static navigationOptions = {
-    title: 'Most Popular',
+    title: 'Most Popular'
   };
 
   constructor(props) {
@@ -27,13 +26,28 @@ export default class Profile extends Component {
     this.state = { 
       entries:[
         {
-          title:"name"
+          title:"iphoneX",
+          price:[{shopName:"idealz",price:33453},{shopName:"greenware",price:3553},{shopName:"omobie",price:36564}],
+          ram:4,
+          rom:128,
+          network:"4G",
+          simType:"Hybrid duel"
         },
         {
-          title:"name2"
+          title:"Samsung galaxy",
+          price:[{shopName:"idealz",price:33453},{shopName:"greenware",price:3553},{shopName:"omobie",price:36564}],
+          ram:4,
+          rom:128,
+          network:"4G",
+          simType:"Hybrid duel"
         },
         {
-          title:"name3"
+          title:"Redmi note 7",
+          price:[{shopName:"idealz",price:33453},{shopName:"greenware",price:3553},{shopName:"omobie",price:36564}],
+          ram:4,
+          rom:128,
+          network:"4G",
+          simType:"Hybrid duel"
         }
       ]
     };
@@ -44,10 +58,15 @@ export default class Profile extends Component {
         <View 
         style={styles.container}
         >
+          <Text style={{fontSize:24, marginBottom:10}}>{ item.title }</Text>
           <Image 
           source={require('../../assets/carouselImages/iPhone.png')}
           />
-            <Text>{ item.title }</Text>
+          <Text>Price range </Text>
+          <View>
+
+          </View>
+         
         </View>
     );
 }
