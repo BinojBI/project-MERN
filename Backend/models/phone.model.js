@@ -28,7 +28,6 @@ let Phone = new Schema({
     },
     shops:[{ 
         shop_name: String, 
-        address: String,
         price: Number
     }]
         

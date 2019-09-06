@@ -19,7 +19,24 @@ export default class CreateTodo extends Component {
             rear_camera:2,
             year:2019,
             is_Available:false,
-            shops:[]
+            avalilableShops:[],
+            shops:[
+                {
+                    id:1,
+                    name:"idealz",
+                    price:0
+                },
+                {
+                    id:2,
+                    name:"dialcom",
+                    price:0
+                },
+                {
+                    id:3,
+                    name:"greenware",
+                    price:0
+                }
+            ]
         }
     }
 
@@ -177,6 +194,8 @@ export default class CreateTodo extends Component {
                         </div>
                         <ShopWithPrice 
                         shops = {this.state.shops}
+                        onChange = {this.handleInputChange}
+                        avalilableShops = {this.state.avalilableShops}
                         />        
                         <div className="row">
                             <div className="form-group">

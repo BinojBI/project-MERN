@@ -5,8 +5,12 @@ export default class ShopWithPrices extends Component {
            super(props);
            this.state = {
              shops:this.props.shops,
-              avalilableShops:[]
+              avalilableShops:this.props.avalilableShops
            }
+         }
+
+         componentDidMount(){
+           console.log(this.state.shops);
          }
 
          createShops(e){
@@ -32,6 +36,7 @@ export default class ShopWithPrices extends Component {
                         type="number"
                         class="form-control"
                         placeholder="Enter Price"
+                        onChange={this.props.onChange}
                       />
                     </td>
                     <td>
@@ -40,7 +45,6 @@ export default class ShopWithPrices extends Component {
                       </button>
                     </td>
                   </tr>
-
             );
         });
 
@@ -53,14 +57,11 @@ export default class ShopWithPrices extends Component {
                <form className="col-md-12">
                  <select
                    className="form-control select2"
-                   onChange={this.createShops.bind(this)}
+                   onChange={this.createShops.bind(this)}                   
                  >
-                   <option>Select</option>
-                   <option>Car</option>
-                   <option>Bike</option>
-                   <option>Scooter</option>
-                   <option>Cycle</option>
-                   <option>Horse</option>
+                    {this.state.shops.map(shops =>
+                    <option key={shops.key} value={shops.name}>{shops.name}</option>
+                  )};
                  </select>
                 
                </form>

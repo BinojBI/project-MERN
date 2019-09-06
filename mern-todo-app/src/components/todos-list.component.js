@@ -20,8 +20,9 @@ export default class TodosList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/todos/')
+        axios.get('http://localhost:4000/phones/')
             .then(response => {
+                console.log(response.data);
                 this.setState({ todos: response.data });
             })
             .catch(function (error){
@@ -36,23 +37,23 @@ export default class TodosList extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <h3>Todos List</h3>
-                <table className="table table-striped" style={{ marginTop: 20 }} >
-                    <thead>
-                        <tr>
-                            <th>Description</th>
-                            <th>Responsible</th>
-                            <th>Priority</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { this.todoList() }
-                    </tbody>
-                </table>
-            </div>
-        )
+        const cards = this.state.todos.map( (currentPhone, i) => { 
+            return (
+                <div className="card" style={{ width: 200, textAlign: "center" }} >
+                    <img src="..." className="card-img-top" alt="..." />
+                    <div className="card-body">
+                        <h5 className="card-title">{currentPhone.phone_name}</h5>
+                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" className="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            )
+        })
+    
+    return(
+        <div>
+            {cards}
+        </div>
+    )
     }
 }
