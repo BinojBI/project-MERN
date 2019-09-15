@@ -1,7 +1,6 @@
 const express = require('express');
 const phoneRoutes = express.Router();
 
-
 let Phone = require('./../../models/phone.model');
 
 phoneRoutes.route('/').get(function(req, res) {

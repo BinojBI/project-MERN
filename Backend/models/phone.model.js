@@ -23,12 +23,10 @@ let Phone = new Schema({
     year: {
         type: Number
     },
-    is_Available: {
-        type: Boolean
-    },
-    shops:[{ 
+    availableShops:[{ 
         shop_name: String, 
-        price: Number
+        phone_price: Number,
+        phone_color: String
     }]
         
     
