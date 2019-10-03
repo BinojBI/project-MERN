@@ -5,6 +5,7 @@ import logo from "./logo.svg";
 import CreatePhone from "./components/create-phone.component";
 import EditTodo from "./components/edit-todo.component";
 import TodosList from "./components/todos-list.component";
+import ShowPhoneInfo from "./components/show-phone-info";
 
 class App extends Component {
   render() {
@@ -31,6 +32,7 @@ class App extends Component {
           <Route path="/" exact component={TodosList} />
           <Route path="/edit/:id" component={EditTodo} />
           <Route path="/create" component={CreatePhone} />
+          <Route path="/info/:id" component={ShowPhoneInfo} />
         </div>
       </Router>
     );

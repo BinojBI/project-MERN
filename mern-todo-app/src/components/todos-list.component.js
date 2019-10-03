@@ -42,6 +42,7 @@ export default class TodosList extends Component {
     }
 
     render() {
+
         const cards = this.state.todos.map( (currentPhone, i) => { 
             return (
                 <div key={i} className="col-md-3 col-sm-6 col-xs-12" style={{paddingLeft:0}}>
@@ -50,7 +51,7 @@ export default class TodosList extends Component {
                     <div className="card-body">
                         <h5 className="card-title">{currentPhone.phone_name}</h5>
                         <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" className="btn btn-primary">Go somewhere</a>
+                        <Link to={"/info/"+currentPhone._id}>Info</Link>
                     </div>
                 </div>
                 </div>

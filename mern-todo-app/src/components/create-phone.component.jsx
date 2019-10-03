@@ -23,6 +23,7 @@ export default class CreateTodo extends Component {
                      rear_camera: 2,
                      year: 2019,
                      availableShops: [],
+                     phoneImage:null,
                      shops: [
                        {
                          shop_id: 1,
@@ -42,6 +43,22 @@ export default class CreateTodo extends Component {
                      ]
                    };
                  }
+
+              imageHandler = event => {
+                this.setState({
+                  phoneImage: event.target.files[0]
+                });
+
+                var formData = new FormData();
+                formData.append("phoneImage", event.target.files[0]);
+
+                axios.post("http://localhost:4000/phones/uploads", formData, { // receive two parameter endpoint url ,form data 
+                })
+                .then(res => { // then print response status
+                  console.log(res.statusText)
+                })
+               
+              }
 
                  handleInputChange(e) {
                    const target = e.target;
@@ -89,7 +106,8 @@ export default class CreateTodo extends Component {
                      selfie_camera: this.state.selfie_camera,
                      rear_camera: this.state.rear_camera,
                      year: this.state.year,
-                     availableShops: this.state.availableShops
+                     availableShops: this.state.availableShops,
+                     phoneImage: this.state.phoneImage
                    };
 
                    axios
@@ -105,10 +123,12 @@ export default class CreateTodo extends Component {
                      rear_camera: 2,
                      year: 2019,
                      is_Available: false,
-                     availableShops: []
+                     availableShops: [],
+                     phoneImage:null
                    });
                  }
                  render() {
+                   
                    return (
                      <div style={{ marginTop: 10 }}>
                        <h3>Create New Phone</h3>
@@ -217,6 +237,38 @@ export default class CreateTodo extends Component {
                                    <option value="2018">2018</option>
                                    <option value="2019">2019</option>
                                  </select>
+                               </div>
+                               <div><label htmlFor="phoneImage">Phone Image</label>
+                                 </div>  
+                               <div className="input-group">                        
+                                 <div className="input-group-prepend">
+                                   <span
+                                     className="input-group-text"
+                                     id="inputGroupFileAddon01"
+                                   >
+                                     Upload
+                                   </span>
+                                 </div>
+                                 <div className="custom-file">
+                                 <form id="imageUpload" encType="multipart/form-data">
+                                   <input
+                                     type="file"
+                                     accept="image/*"
+                                     className="custom-file-input"
+                                     name="phoneImage"
+                                     id="inputGroupFile01"
+                                     aria-describedby="inputGroupFileAddon01"
+                                     onChange={this.imageHandler}
+                                     onClick={(event)=> {event.target.value = null}}
+                                   />
+                                   </form>
+                                   <label
+                                     className="custom-file-label"
+                                     htmlFor="inputGroupFile01"
+                                   >
+                                     {this.state.phoneImage ? this.state.phoneImage.name : "Choose file"}
+                                   </label>
+                                 </div>
                                </div>
                              </div>
                            </div>
