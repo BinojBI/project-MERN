@@ -27,7 +27,7 @@ phoneRoutes.route('/add').post(function(req, res) {
             res.status(200).json({'phone': 'phone added successfully'});
         })
         .catch(err => {
-            res.status(400).send('adding new phone failed');
+            res.status(400).send('adding new phone failed'+ err);
         });
 });
 
